@@ -71,6 +71,7 @@ define docker::run(
   $restart = undef,
   $before_stop = false,
   $log_driver = false,
+  $log_opt = [],
 ) {
   include docker::params
   $docker_command = $docker::params::docker_command
@@ -132,6 +133,7 @@ define docker::run(
     volumes         => any2array($volumes),
     volumes_from    => any2array($volumes_from),
     log_driver      => $log_driver,
+    log_opt         => any2array($log_opt),
   })
 
   $sanitised_title = regsubst($title, '[^0-9A-Za-z.\-]', '-', 'G')
